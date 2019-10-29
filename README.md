@@ -1,4 +1,4 @@
-# cumulocity-IoT-examples
+# Cumulocity-IoT-Examples
 Collection of examples for beginner Cumulocity developers. It consists of common use cases and starting points for developers getting up to speed with Cumulocity. Cumulocity is an IoT platform that enables rapid connections of many, many different devices and applications. It allows you to monitor and respond to IoT data in real time, and to spin up this capability in minutes, more information can be found [here](https://www.softwareag.cloud/site/product/cumulocity-iot.html#/). Each example will contain instructions on how to recreate itself from a blank project. 
 
 ______________________
