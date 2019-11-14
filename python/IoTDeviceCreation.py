@@ -17,9 +17,11 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 
-host = 'https://MY_CUMULOCITY_TENANT.cumulocity.com'
+host = 'https://humblescience.us.cumulocity.com'
+username = 'testuser@softwareag.com'
+password = 'test123!'
 
-auth = HTTPBasicAuth('USERNAME', 'PASSWORD')
+auth = HTTPBasicAuth(username, password)
 session = requests.Session()
 session.auth = auth
 session.headers.update({
@@ -39,31 +41,23 @@ NEW_DEVICE_TEMPLATE = """{
         "revision": "N/A",
         "model": "",
         "serialNumber": ""
+    },
+    "c8y_Position": {
+        "alt": 67,
+        "lng": -80.138106,
+        "lat": 25.779828,
+        "trackingProtocol" : "TELIC",
+        "reportReason" : "Time Event"
     }
 }"""
 deviceDescriptionJson = json.loads(NEW_DEVICE_TEMPLATE)
 
-POSITION_EVENT_TEMPLATE = """{
-    {
-    "time":"2013-06-22T17:03:14.000+02:00",
-    "source": {
-            "id":"10300" 
-        }, 
-    "type": "c8y_LocationUpdate",
-    "text": "LocUpdate"
-    "c8y_Position": {
-        "alt": 67,
-        "lng": 6.95173,
-        "lat": 51.151977 },
-    
-    }"""
-devicePositionJson = json.loads(POSITION_EVENT_TEMPLATE)
 
 # Check whether device is already registered.
 def isDeviceRegistered(deviceIdPath, deviceId):
     url = host +  deviceIdPath + deviceId
     response = session.get(url)
-    print ('Response -> ' + str(response.json()))
+    #print ('Response -> ' + str(response.json()))
     print ('Response -> ' + str(response.status_code))
     return response.status_code == 200
 
@@ -97,6 +91,7 @@ def registerDevice(deviceId, newDeviceDetails):
     associateDescriptionJson['externalId'] = deviceId   
     response = session.post(url, json=associateDescriptionJson)
     print ('Response -> ' + str(response.status_code))
+    print(response.text)
     if (response.status_code == 201):
         newDeviceAssoc = response.json()
         print ("New device [id=%s] associated with external id ['c8y_serial'=%s]" % (newDeviceAssoc['managedObject']['id'], newDeviceAssoc['externalId']))
@@ -113,7 +108,7 @@ def checkAndRegisterDevice(deviceName, deviceType, deviceId):
         if (newDeviceDetails != None):
             registerDevice(deviceId, newDeviceDetails) 
         else:
-            print("Error creating new device! [id=%s]", deviceId)
+            print("Error creating new device! [id=%s]"%deviceId)
 
 
      
