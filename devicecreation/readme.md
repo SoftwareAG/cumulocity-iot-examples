@@ -27,10 +27,10 @@ Open the IoTDeviceCreation.py script, and modify the host, name, and password.
 	
 This will create a new device with location information.  Navigate to the 'Device Management' section of your tenant and open 'All Devices'.  You should see the new device created and registered.
 
-![trigger](https://github.com/SoftwareAG/cumulocity-iot-examples/blob/master/python/c8y-screenshot-1.png) 
+![trigger](https://github.com/SoftwareAG/cumulocity-iot-examples/blob/master/devicecreation/c8y-screenshot-1.png) 
 
 Select the newly created device and navigate to the "Location" menu option, where you should now see its location on the map.
 
-![trigger](https://github.com/SoftwareAG/cumulocity-iot-examples/blob/master/python/c8y-screenshot-2.png) 
+![trigger](https://github.com/SoftwareAG/cumulocity-iot-examples/blob/master/devicecreation/c8y-screenshot-2.png) 
 
 
