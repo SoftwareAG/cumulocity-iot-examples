@@ -4,6 +4,8 @@ Collection of examples for beginner Cumulocity developers. It consists of common
 ## Introduction
 
  1. [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
+ 1. [MQTT Listerner](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/mqtt-listener)
+ 1. [ESP Demo](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/ESP%20Demo)
 
 ## Multi-product
  
