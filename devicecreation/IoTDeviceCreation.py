@@ -17,9 +17,10 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 
-host = 'https://humblescience.us.cumulocity.com'
-username = 'testuser@softwareag.com'
-password = 'test123!'
+
+host = 'https://TENANT.cumulocity.com'
+username = 'testuser'
+password = 'password'
 
 auth = HTTPBasicAuth(username, password)
 session = requests.Session()

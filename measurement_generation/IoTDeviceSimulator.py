@@ -1,5 +1,12 @@
 '''
-Created on Nov 1, 2019
+This script aims to showcase how to generate measurements for Cumulocity devices. 
+In this example, we demonstrate necessary steps to generate simulated sensor readings through Cumulocity's REST API. 
+This example automatically creates devices that host the generated readings.
+
+Please refer to the documentation for further details on the API:
+https://cumulocity.com/guides/reference/rest-implementation/
+
+Created on Dec 10, 2019
 
 @author: JHUM
 '''
@@ -11,12 +18,11 @@ import datetime
 import random
 from threading import Thread
 from time import sleep
-from _decimal import getcontext
 
 # Get the session information from the IoTDeviceCreation module
-from IoTDeviceCreation import checkAndRegisterDevice
-from IoTDeviceCreation import host
-from IoTDeviceCreation import session
+import sys
+sys.path.append('../devicecreation') 
+from IoTDeviceCreation import checkAndRegisterDevice, host, session
 
 SENSOR_READING_TIME_DELAY = 10.0
 INITIAL_SENSOR_VALUE = 100.0
