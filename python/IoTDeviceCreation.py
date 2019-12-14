@@ -55,11 +55,16 @@ deviceDescriptionJson = json.loads(NEW_DEVICE_TEMPLATE)
 
 # Check whether device is already registered.
 def isDeviceRegistered(deviceIdPath, deviceId):
-    url = host +  deviceIdPath + deviceId
+    return getInternalDeviceId(deviceIdPath, deviceId) != None
+
+def getInternalDeviceId(deviceId):
+    url = host + '/identity/externalIds/c8y_Serial/' + deviceId
     response = session.get(url)
-    #print ('Response -> ' + str(response.json()))
-    print ('Response -> ' + str(response.status_code))
-    return response.status_code == 200
+    #print ('Response -> ' + str(response.status_code))
+    if response.status_code == 200:
+            jsonResponse = response.json()
+            return jsonResponse['managedObject']['id']
+    return None
 
 # Create the device from template
 def createDevice(deviceName, deviceType, deviceId):
@@ -70,10 +75,10 @@ def createDevice(deviceName, deviceType, deviceId):
     deviceDescriptionJson['c8y_Hardware']['serialNumber'] = deviceId
     print (json.dumps(deviceDescriptionJson, indent = 4))
     response = session.post(url, json=deviceDescriptionJson)
-    print ('Response -> ' + str(response.status_code))
+    #print ('Response -> ' + str(response.status_code))
     if (response.status_code == 201):
         newDeviceDetails = response.json()
-        print ("New device created [id=%s]" % newDeviceDetails['id'])
+        #print ("New device created [id=%s]" % newDeviceDetails['id'])
         return newDeviceDetails;
     return None          
         # print ('Response -> ' + json.dumps(response.json(), indent = 4))
@@ -90,28 +95,28 @@ def registerDevice(deviceId, newDeviceDetails):
         }""")
     associateDescriptionJson['externalId'] = deviceId   
     response = session.post(url, json=associateDescriptionJson)
-    print ('Response -> ' + str(response.status_code))
-    print(response.text)
+    # print ('Response -> ' + str(response.status_code))
+    #print(response.text)
     if (response.status_code == 201):
         newDeviceAssoc = response.json()
-        print ("New device [id=%s] associated with external id ['c8y_serial'=%s]" % (newDeviceAssoc['managedObject']['id'], newDeviceAssoc['externalId']))
+        print ("New device [id=%s] associated with external id ['c8y_Serial'=%s]" % (newDeviceAssoc['managedObject']['id'], newDeviceAssoc['externalId']))
         # print ('Response -> ' + json.dumps(response.json(), indent = 4))
 
 
-
-def checkAndRegisterDevice(deviceName, deviceType, deviceId):
-    if isDeviceRegistered('/identity/externalIds/c8y_Serial/', deviceId):        
-        print('Device [id=%s] already registered.' % deviceId) 
+def checkAndRegisterDevice(deviceName, deviceType, externalId):
+    internalDeviceId = getInternalDeviceId(externalId)
+    if internalDeviceId != None:        
+        print('Managed object [external id=%s] already registered with internal id=%s.' % (externalId, internalDeviceId))
+        return internalDeviceId
     else:
-        print('Device [id=%s] not registered, registering as new device ...' % deviceId)
-        newDeviceDetails = createDevice(deviceName, deviceType, deviceId)
+        print('Managed object [id=%s] not registered, registering as new device ...' % externalId)
+        newDeviceDetails = createDevice(deviceName, deviceType, externalId)
         if (newDeviceDetails != None):
-            registerDevice(deviceId, newDeviceDetails) 
+            registerDevice(externalId, newDeviceDetails)
+            return newDeviceDetails['id'] 
         else:
-            print("Error creating new device! [id=%s]"%deviceId)
-
-
-     
+            print("Error creating new device! [id=%s]", externalId)
+            return None
      
 if __name__ == "__main__":
     checkAndRegisterDevice('MyDevice', 'MyDeviceType', 'my-device-1')
