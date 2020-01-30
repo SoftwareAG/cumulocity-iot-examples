@@ -7,16 +7,27 @@ Collection of examples for beginner Cumulocity developers. It consists of common
  1. [ESP Demo](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/ESP%20Demo)
  1. [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
  1. [Measurement Generation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/measurement_generation) - Requires previous example [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
+ 1. [MQTT Hello World](https://github.com/SoftwareAG/c8y_hw_mqtt)
+ 
 
 ## Multi-product
  
  1. [Cumulocity-Freshdesk](https://github.com/SoftwareAG/webmethodsio-examples/tree/master/cumulocitytofreshdesk)
  1. [Cumulocity-S3](https://github.com/SoftwareAG/webmethodsio-examples/tree/master/cumulocity-s3)
  1. [Process EDI from Cumulocity Alarm](https://github.com/SoftwareAG/webmethods-b2b-examples/tree/master/c8y-wmio-hybrid-b2b-create-edi850)
+ 1. [Apama-Raspberry Pi](https://github.com/SoftwareAG/apama-cumulocity-raspberrypi) - Apama sending data from a Raspberry Pi to Cumulocity
+ 1. [Built.io-Slack](https://github.com/SoftwareAG/builtio-monitoring-cumulocity-microservices) - Monitoring Cumulocity microservices using Built.io Flow actions, create an alarm and notify a Slack channel (tutorial).
+
+## Agents/Microservices
  
- ## Agents
- 
- 1. [MQTT and Raspberry Pi Agent](https://github.com/SoftwareAG/c8yMQTT) - Python3 Cumulocity Agent implementation for MQTT and Rasperry PI
+1. [MQTT and Raspberry Pi Agent](https://github.com/SoftwareAG/c8yMQTT) - Python3 Cumulocity Agent implementation for MQTT and Rasperry PI
+1. [Eclipse Hono](https://github.com/SoftwareAG/cumulocity-hono-agent) - Cumulocity Agent which integrates to Eclipse Hono with Telemetry + Command & Control
+1. [Bosch XDK](https://github.com/SoftwareAG/cumulocity-xdk-agent) - Device agent for Bosch XDK to connect to Cumulocity 
+1. [Disruptive Technologies Devices](https://github.com/SoftwareAG/cumulocity-dt-integration-microservice) - Cumulocity Microservice to Integrate with Disruptive Technologies Devices
+
+## Widgets
+
+1. [Collada 3D Widget](https://github.com/SoftwareAG/cumulocity-collada-3d-widget) - A ThreeJS based 3d viewer for Collada files in Cumulocity
 ______________________
 For more information you can Ask a Question in the [TECHcommunity Forums](http://tech.forums.softwareag.com/techjforum/forums/list.page?product=cumulocity).
 
