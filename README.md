@@ -8,7 +8,6 @@ Collection of examples for beginner Cumulocity developers. It consists of common
  1. [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
  1. [Measurement Generation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/measurement_generation) - Requires previous example [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
  1. [MQTT Hello World](https://github.com/SoftwareAG/c8y_hw_mqtt)
- 1. [Smart Kanban](https://github.com/SoftwareAG/cumulocity-SmartKanban) - This is an example for sniffing data packages inside a network and filtering connection packages. This can be used e.g. to make IoTDashbuttons trigger Events and thus whole actions in Cumulocity. The Event how ever can be used as a Smart Kanbas inside a storage system as a real industrial IoT example.
  
 
 ## Multi-product
@@ -18,6 +17,7 @@ Collection of examples for beginner Cumulocity developers. It consists of common
  1. [Process EDI from Cumulocity Alarm](https://github.com/SoftwareAG/webmethods-b2b-examples/tree/master/c8y-wmio-hybrid-b2b-create-edi850)
  1. [Apama-Raspberry Pi](https://github.com/SoftwareAG/apama-cumulocity-raspberrypi) - Apama sending data from a Raspberry Pi to Cumulocity
  1. [Built.io-Slack](https://github.com/SoftwareAG/builtio-monitoring-cumulocity-microservices) - Monitoring Cumulocity microservices using Built.io Flow actions, create an alarm and notify a Slack channel (tutorial).
+  1. [Smart Kanban](https://github.com/SoftwareAG/cumulocity-SmartKanban) - This is an example for sniffing data packages inside a network and filtering connection packages. This can be used e.g. to make IoTDashbuttons trigger Events and thus whole actions in Cumulocity. The Event how ever can be used as a Smart Kanbas inside a storage system as a real industrial IoT example.
 
 ## Agents/Microservices
  
