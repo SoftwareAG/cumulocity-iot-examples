@@ -25,6 +25,7 @@ Collection of examples for beginner Cumulocity developers. It consists of common
 1. [Eclipse Hono](https://github.com/SoftwareAG/cumulocity-hono-agent) - Cumulocity Agent which integrates to Eclipse Hono with Telemetry + Command & Control
 1. [Bosch XDK](https://github.com/SoftwareAG/cumulocity-xdk-agent) - Device agent for Bosch XDK to connect to Cumulocity 
 1. [Disruptive Technologies Devices](https://github.com/SoftwareAG/cumulocity-dt-integration-microservice) - Cumulocity Microservice to Integrate with Disruptive Technologies Devices
+1. [Manage incidents in Service Now](https://github.com/SoftwareAG/cumulocity-microservice-servicenow) - When an alarm in Cumulocity is created the microservice creates a resulting incident. When the incident is resolved the corresponing alarm in Cumulocity is cleared.
 
 ## Widgets
 
