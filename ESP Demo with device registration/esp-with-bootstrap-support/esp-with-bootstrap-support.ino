@@ -148,6 +148,23 @@ void storeCredentials(String user, String password) {
   #endif
 }
 
+void setClock() {
+  configTime(3 * 3600, 0, "pool.ntp.org", "time.nist.gov");
+
+  Serial.print("Waiting for NTP time sync: ");
+  time_t now = time(nullptr);
+  while (now < 8 * 3600 * 2) {
+    delay(500);
+    Serial.print(".");
+    now = time(nullptr);
+  }
+  Serial.println("");
+  struct tm timeinfo;
+  gmtime_r(&now, &timeinfo);
+  Serial.print("Current time: ");
+  Serial.print(asctime(&timeinfo));
+}
+
 void setup() {
   Serial.begin(115200);
   Serial.println("");
@@ -170,7 +187,8 @@ void setup() {
     #ifdef ARDUINO_ARCH_ESP32
       espClient.setCACert(root_ca);
     #else
-      espClient.setFingerprint(fingerprint);
+      espClient.setCACert_P(caCert,caCertLen);
+      setClock();
     #endif
   #endif
   client.setServer(MQTT_SERVER, MQTT_PORT);
