@@ -10,7 +10,16 @@ const char* ssid = "<YOUR_SSID>";
 const char* password = "<YOUR_PASSWORD>";
 
 // Add your MQTT Broker normally one per master tenant or just use your tenant URL:
-const char* mqtt_server = "<MQTT_HOST>"; // e.g.: "mqtt.eu-latest.cumulocity.com" for all tenants of eu-latest environment
+#define MQTT_SERVER "<MQTT_HOST>" // e.g.: "mqtt.eu-latest.cumulocity.com" for all tenants of eu-latest environment
+#define USE_SSL false
+#if USE_SSL 
+  #define MQTT_PORT 8883
+  // cert fingerprint can be extracted with the script found here: https://github.com/marvinroger/async-mqtt-client/tree/master/scripts/get-fingerprint
+  const uint8_t fingerprint[] = {0xae, 0x07, 0xc2, 0xe0, 0x6b, 0x4f, 0xd0, 0x26, 0x2c, 0x2e, 0xfd, 0xd9, 0x3e, 0x0a, 0x74, 0xd5, 0xd4, 0xc9, 0x32, 0xa7};
+#else
+  #define MQTT_PORT 1883
+#endif
+
 #define BOOTSTRAP_USER "<BOOTSTRAP_USER>" // ask your admin for those, should be the same for all tenants on a management tenant
 #define BOOTSTRAP_PASSWORD "<BOOTSTRAP_PASSWORD>" // ask your admin for those, should be the same for all tenants on a management tenant
 // in case you want to skip bootstrap process, you can also just hardcode credentials for this device:
@@ -18,29 +27,29 @@ const char* mqtt_server = "<MQTT_HOST>"; // e.g.: "mqtt.eu-latest.cumulocity.com
 String mqttUser = BOOTSTRAP_USER; // "<tenantId>/<user>"
 String mqttPassword = BOOTSTRAP_PASSWORD; // "<password>"
 
-// set hardware to esp8266 or esp32 (for esp32 set to false)
-#define ESP8266 true
 // set to true if BME280 sensor is available
 #define HAS_SENSORS false
 
 // LED Pin
-const int ledPin = 2;
+const int ledPin = LED_BUILTIN;
 // in some cases led behavior might be inverted (e.g. wemos d1 mini uses LEDON = LOW, LEDOFF = HIGH)
 #define LEDON LOW
 #define LEDOFF HIGH
 
-#if ESP8266
-  #define HW_MODEL "Wemods D1 mini"
-  #define HW_REVISION "ESP8266"
-  #include <ESP8266WiFi.h>
-  #include <FS.h>
-  #include <ArduinoJson.h>
-#else 
+#ifdef ARDUINO_ARCH_ESP32
+// ESP32
   #define HW_MODEL "Node MCU"
   #define HW_REVISION "ESP32"
   #include <Preferences.h>
   #include <WiFi.h>
   Preferences preferences; 
+#else 
+// ESP8266
+  #define HW_MODEL "Wemods D1 mini"
+  #define HW_REVISION "ESP8266"
+  #include <ESP8266WiFi.h>
+  #include <FS.h>
+  #include <ArduinoJson.h>
 #endif
 
 #if HAS_SENSORS
@@ -59,8 +68,12 @@ const int ledPin = 2;
 #define CONFIG_DIR "az"
 
 boolean bootstapping = true;
+#if USE_SSL
+  WiFiClientSecure espClient;
+#else
+  WiFiClient espClient;
+#endif
 
-WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
 String deviceId = "";
@@ -187,7 +200,10 @@ void setup() {
   }
 #endif
   setup_wifi();
-  client.setServer(mqtt_server, 1883);
+#if USE_SSL
+  espClient.setFingerprint(fingerprint);
+#endif
+  client.setServer(MQTT_SERVER, MQTT_PORT);
   client.setCallback(callback);
 
   pinMode(ledPin, OUTPUT);
