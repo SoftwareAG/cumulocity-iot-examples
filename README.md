@@ -9,6 +9,7 @@ Collection of examples for beginner Cumulocity developers. It consists of common
  1. [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
  1. [Measurement Generation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/measurement_generation) - Requires previous example [Device Creation](https://github.com/SoftwareAG/cumulocity-iot-examples/tree/master/devicecreation)
  1. [MQTT Hello World](https://github.com/SoftwareAG/c8y_hw_mqtt)
+ 1. [MIMIC MQTT Lab Cumulocity] (https://iotsolutions.softwareag.com/iotsolutions/mimic-mqtt-lab-cumulocity/10035) - Partner Lab to Get Started with Cumulocity IoT
  
 
 ## Multi-product
