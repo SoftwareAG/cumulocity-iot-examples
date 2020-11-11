@@ -30,6 +30,11 @@ Collection of examples for beginner Cumulocity developers. It consists of common
 
 ## Widgets
 
+1. [Demo Widget](https://github.com/SoftwareAG/cumulocity-demo-widget) - A tutorial on how to create an Angular widget for Cumulocity
+1. [Device Chart Widget](https://github.com/SoftwareAG/cumulocity-device-chart-widget) - This is an Angular 8 widget, which is designed to display the chart based on the device specific inventory data.
+1. [KPI Trend Widget](https://github.com/SoftwareAG/cumulocity-kpi-trend-widget) - This widget shows a current measurement value in realtime and a chart based on measurement values as datapoints.
+1. [Smart Map Widget](https://github.com/SoftwareAG/cumulocity-smart-map-widget) - The Smart Map widget help you to track real-time device locations in indoor with multi floor infrastructure as well as in outdoor.
+1. [Event Chart Widget](https://github.com/SoftwareAG/cumulocity-event-chart-widget) - This widget visualizes event data in a chart
 1. [Collada 3D Widget](https://github.com/SoftwareAG/cumulocity-collada-3d-widget) - A ThreeJS based 3d viewer for Collada files in Cumulocity
 ______________________
 For more information you can Ask a Question in the [TECHcommunity Forums](http://tech.forums.softwareag.com/techjforum/forums/list.page?product=cumulocity).
